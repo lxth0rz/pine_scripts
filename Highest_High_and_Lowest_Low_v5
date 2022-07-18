@@ -1,0 +1,11 @@
+//@version=5
+// plot the Highest High and the Lowest Low in the past 50 days.
+indicator("HH,LL", overlay=true)
+
+// ta.highest() returns the highest price within the lookback period. It does not return if the current high is the highest. You need an additional check for that.
+highestHigh = ta.highest(high, 50)
+
+lowestLow = ta.lowest(low, 50)
+
+plot(highestHigh, color=color.red, linewidth=2)
+plot(lowestLow, color=color.blue, linewidth=2)
