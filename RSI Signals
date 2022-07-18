@@ -1,0 +1,18 @@
+//@version=5
+
+indicator(title="RSI overbought or oversold signals", shorttitle="RSI Signals", overlay=true)
+
+//inputs
+source = input.source(close, "Source")
+length = input(14, "RSI Length")
+overboughtValue = input(70, title="RSI Overbought Level")
+oversoldCheckValue = input(30, title="RSI Oversold Level")
+
+//Check Values
+rsiValue = ta.rsi(source, length)
+isOverBought = rsiValue >= overboughtValue
+isOverSold = rsiValue <= oversoldCheckValue
+
+// Plot signals to chart
+plotshape(isOverBought, title="Overbought", location=location.abovebar, color=color.red, style=shape.triangledown, text="OB")
+plotshape(isOverSold, title="Oversold", location=location.belowbar, color=color.green, style=shape.triangleup, text="OS")
