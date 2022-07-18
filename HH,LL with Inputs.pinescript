@@ -1,0 +1,11 @@
+//@version=5
+
+indicator("HH,LL_with Iinputs", overlay=true)
+
+period = input(100, "Period")
+
+highestHigh = ta.highest(high, period)
+lowestLow = ta.lowest(low, period)
+
+plot(highestHigh, color=color.green, linewidth=2)
+plot(lowestLow, color=color.red, linewidth=2)
