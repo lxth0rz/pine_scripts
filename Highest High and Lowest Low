@@ -1,0 +1,7 @@
+//@version=4
+// plot the Highest High and the Lowest Low in the past 50 days.
+study("HH,LL", overlay=true)
+highestHigh = highest(high, 50)
+lowestLow = lowest(low, 50)
+plot(highestHigh, color=color.red, linewidth=2)
+plot(lowestLow, color=color.blue, linewidth=2)
