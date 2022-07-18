@@ -16,3 +16,4 @@ isOverSold = rsiValue <= oversoldCheckValue
 // Plot signals to chart
 plotshape(isOverBought, title="Overbought", location=location.abovebar, color=color.red, style=shape.triangledown, text="OB")
 plotshape(isOverSold, title="Oversold", location=location.belowbar, color=color.green, style=shape.triangleup, text="OS")
+
