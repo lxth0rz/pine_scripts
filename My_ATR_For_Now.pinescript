@@ -1,0 +1,19 @@
+//@version=5
+indicator("My ATR For Now", overlay=true)
+
+atrLength = input(14, "ATR Length")
+useStructure = input.bool(true, title="Use Structure?")
+swingHighLowLookBack = input(7, "How Far To Look Swing High Swing Low Back")
+atrStopMultiplier = input.float(1.0, title="ATR Multiplier")
+
+highestHigh = ta.highest(high, swingHighLowLookBack)
+lowestLow = ta.lowest(low, swingHighLowLookBack)
+atr = ta.atr(atrLength)
+
+longStop = (useStructure ? lowestLow : close) - atr * atrStopMultiplier
+shortStop = (useStructure ? highestHigh : close) + atr * atrStopMultiplier
+
+// Draw data to chart
+plot(atr, color=color.blue, title="ATR")
+plot(longStop, color=color.green, title="Long Trailing Stop", transp=0)
+plot(shortStop, color=color.red, title="Short Trailing Stop", transp=0)
