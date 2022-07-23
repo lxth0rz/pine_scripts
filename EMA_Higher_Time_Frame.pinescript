@@ -1,0 +1,16 @@
+//@version=5
+indicator("Higher Time Frame EMA", overlay=true)
+ 
+i_res = input.timeframe('D', "EMA Timeframae", options=['D', 'W', 'M']) 
+
+len = input.int(100, title="Length")
+col = input.bool(true, title="Color")
+smooth = input.bool(false, title="Smooth")
+
+ema = ta.ema(close, len)
+
+emaSmooth = request.security(syminfo.tickerid, i_res, ema, barmerge.gaps_on, barmerge.lookahead_off)
+emaStep = request.security(syminfo.tickerid, i_res, ema, barmerge.gaps_off, barmerge.lookahead_off)
+
+// Draw EMA
+plot(smooth ? emaSmooth : emaStep, color=col ? close > emaStep ? color.green : color.red : color.black, style=plot.style_line, linewidth=2, title="EMA Higher Time Frame")
