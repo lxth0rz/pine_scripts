@@ -1,0 +1,7 @@
+//@version=5
+
+strategy("Moving Average Cross-Over Strategy", overlay=true)
+
+// Create SMA Indicators 
+shortSMA = ta.sma(close, 10)
+longSMA = ta.sma(close, 30)
