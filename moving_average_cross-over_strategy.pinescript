@@ -2,6 +2,22 @@
 
 strategy("Moving Average Cross-Over Strategy", overlay=true)
 
-// Create SMA Indicators 
-shortSMA = ta.sma(close, 10)
-longSMA = ta.sma(close, 30)
+// Create EMA Indicators 
+shortEMA = ta.ema(close, 7)
+longEMA = ta.ema(close, 21)
+
+rsi = ta.rsi(close, 14)
+
+isLong = ta.crossover(source1 = shortEMA, source2 = longEMA) 
+isShort = ta.crossunder(source1 = shortEMA, source2 = longEMA)
+
+// Execute trade if condition is True
+if (isLong)
+    strategy.entry("long", strategy.long, 1, when = rsi > 50)
+
+if (isShort)
+    strategy.entry("short", strategy.short, 1, when = rsi < 50)
+
+// Plot Moving Average's to chart
+plot(shortEMA)
+plot(longEMA, color=color.black)
