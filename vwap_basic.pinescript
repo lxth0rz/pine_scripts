@@ -1,0 +1,7 @@
+//@version=5
+indicator("VWap Basic")
+
+vwapData  = ta.vwap(close)
+
+// Plot the average and its band
+plot(vwapData, color=color.orange, title="VWAP")
